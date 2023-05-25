@@ -50,6 +50,9 @@
       margin-top: 2rem;
       font-size: 2rem;
     }
+    #res{
+      display: none;
+    }
   </style>
   <body>
     <div id="wheel" class="loader"></div>
@@ -59,7 +62,7 @@
       <video id="video" width="600" height="600" autoplay></video>
   
       <button id="snap">Capture</button>
-      <button onclick="showResult()" >Show Result</button>
+      <button onclick="showResult()" id="res">Show Result</button>
       <canvas id="canvas" width="640" height="480"></canvas>
     </div>
     
@@ -130,14 +133,13 @@
               console.log(url);
               ImageLink = url;
               localStorage.setItem("URL", url);
-              document.getElementById("wheel").style.display = "block";
-              document.getElementById("box").style.display = "none";
-              document.getElementById("btn").style.display = "none";
+              
             });
             firebase.database().ref("New Pictures/").set({
               Link: ImgUrl,
             });
           });
+          document.getElementById('res').style.display="block"
         };
       });
       
@@ -162,7 +164,7 @@
            document.getElementById('result').textContent = `success ${res}`;
            document.getElementById('result').style.display = 'block';
          }
-
+         window.location.href = "https://qr-based-attendance-manager.pages.dev/pages/add_student_details"
         }
       
     </script>
