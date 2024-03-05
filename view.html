@@ -139,6 +139,12 @@
     </div>
 
     <script type="module">
+      function conversion(input) {
+        var alphanumericOnly = input.replace(/[^0-9a-z]/gi, '');
+        var UpperAlphanumeric = alphanumericOnly.toUpperCase();
+        return UpperAlphanumeric;
+      }
+
       function formatDate(inputDate) {
         var dateParts = inputDate.split('-');
         return dateParts[2] + '-' + dateParts[1] + '-' + dateParts[0];
@@ -153,9 +159,13 @@
           div.style.visibility = "hidden";
         }
         var subjectCode = document.getElementById("subjectCode").value;
+        subjectCode=conversion(subjectCode);
+        console.log(subjectCode);
         var date = document.getElementById("date").value;
         date=formatDate(date);
         var section = document.getElementById("section").value;
+        section=conversion(section);
+        console.log(section);
         GetFilteredDataFromFirebase(subjectCode, date, section);
       };
 
